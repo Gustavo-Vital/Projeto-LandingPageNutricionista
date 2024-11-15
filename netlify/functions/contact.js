@@ -1,5 +1,6 @@
-require('dotenv').config();
 const nodemailer = require('nodemailer');
+require('dotenv').config();
+
 
 // Validação de dados
 const validateData = (data) => {
