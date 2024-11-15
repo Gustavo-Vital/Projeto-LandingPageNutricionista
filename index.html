@@ -65,7 +65,7 @@
             <div class="about-wrapper">
                 <div class="about-left">
                     <div class="about-image-container">
-                        <img src="/assets/TaniaSobre.jpg" alt="Foto da Nutricionista Tania Dias" class="about-main-image"
+                        <img src="/assets/TaniaAbout.jpg" alt="Foto da Nutricionista Tania Dias" class="about-main-image"
                             width="400" height="500" loading="lazy">
                     </div>
                 </div>
@@ -108,19 +108,19 @@
             </div>
             <div class="services-list">
                 <div class="service-item">
-                    <img src="/assets/TaniaServices.jpg" alt="Consulta Nutricional">
-                    <h3>Consultultoria Nutricionais </h3>
+                    <img src="/assets/ConsultoriaNutricionais.png" alt="Consulta Nutricional">
+                    <h3>Consultoria Nutricionais </h3>
                     <p>Receba orientações personalizadas para atingir seus objetivos de saúde, com planos alimentares e
                         acompanhamento contínuo. (Individualizadas/Grupo)
                 </div>
                 <div class="service-item">
-                    <img src="/assets/TaniaServices.jpg" alt="Dieta Personalizada">
+                    <img src="/assets/PlanoAlimentar.png" alt="Dieta Personalizada">
                     <h3>Plano Alimentar Personalizado</h3>
                     <p>Avaliação das necessidades nutricionais para
                         elaboração de plano alimentar individualizado.</p>
                 </div>
                 <div class="service-item">
-                    <img src="/assets/TaniaServices.jpg" alt="Planejamento Nutricional">
+                    <img src="/assets/OrientaçãoNutricional.png" alt="Planejamento Nutricional">
                     <h3>Orientação Nutricional</h3>
                     <p>Acompanhamento contínuo para otimizar sua alimentação, com ajustes de plano alimentar para
                         pacientes
@@ -183,41 +183,42 @@
         </section>
 
         <!-- Seção do Formulário de Contato -->
-        <section class="contact" id="contact">
-            <div class="contact-content">
-                <div class="contact-text">
-                    <h2>Entre em Contato</h2>
-                    <p>Tire suas dúvidas, agende uma consulta ou participe do próximo desafio!</p>
-                </div>
-                <form class="contact-form" id="contactForm" method="POST" action="/send-email">
-                    <div class="form-group">
-                        <input type="text" id="name" name="name" required>
-                        <label for="name">Nome Completo</label>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" required>
-                        <label for="email">E-mail</label>
-                    </div>
-                    <div class="form-group">
-                        <input type="tel" id="phone" name="phone" required>
-                        <label for="phone">WhatsApp</label>
-                    </div>
-                    <div class="form-group">
-                        <select id="interest" name="interest" required>
-                            <option value="">Selecione seu interesse</option>
-                            <option value="consulta">Consulta Nutricional</option>
-                            <option value="desafio">Participar do Desafio</option>
-                            <option value="duvida">Tirar Dúvidas</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <textarea id="message" name="message" required></textarea>
-                        <label for="message">Mensagem</label>
-                    </div>
-                    <button type="submit" class="submit-button">Enviar Mensagem</button>
-                </form>
+<section class="contact" id="contact">
+    <div class="contact-content">
+        <div class="contact-text">
+            <h2>Entre em Contato</h2>
+            <p>Tire suas dúvidas, agende uma consulta ou participe do próximo desafio!</p>
+        </div>
+        <form class="contact-form" id="contactForm" method="POST" action="/.netlify/functions/contact.js" data-netlify="true">
+            <div class="form-group">
+                <input type="text" id="name" name="name" required>
+                <label for="name">Nome Completo</label>
             </div>
-        </section>
+            <div class="form-group">
+                <input type="email" id="email" name="email" required>
+                <label for="email">Email</label>
+            </div>
+            <div class="form-group">
+                <input type="tel" id="phone" name="phone" required>
+                <label for="phone">Telefone</label>
+            </div>
+            <div class="form-group">
+                <select id="interest" name="interest" required>
+                    <option value="consultoria">Consultoria Nutricional</option>
+                    <option value="plano-alimentar">Plano Alimentar Personalizado</option>
+                    <option value="orientacao">Orientação Nutricional</option>
+                </select>
+                <label for="interest">Qual o seu interesse?</label>
+            </div>
+            <div class="form-group">
+                <textarea id="message" name="message" required></textarea>
+                <label for="message">Mensagem</label>
+            </div>
+            <button type="submit" class="submit-button">Enviar</button>
+        </form>
+    </div>
+</section>
+
     </main>
 
     <!-- Seção Footer -->
