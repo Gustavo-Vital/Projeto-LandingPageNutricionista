@@ -94,7 +94,7 @@ class IMCCalculator {
 
     setupEventListeners() {
         const inputs = ['weight-imc', 'height'].map(id => document.getElementById(id));
-        
+
         inputs.forEach(input => {
             if (input) {
                 input.addEventListener('input', () => {
@@ -176,7 +176,8 @@ class ContactForm {
             };
 
             try {
-                const response = await fetch('/.netlify/functions/contact', {
+
+                const response = await fetch('/api/contact', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -185,7 +186,7 @@ class ContactForm {
                 });
 
                 const result = await response.json();
-                
+
                 if (response.ok) {
                     this.showSuccessMessage(result.message);
                     this.form.reset();
@@ -228,7 +229,7 @@ class ContactForm {
             text-align: center;
         `;
         this.form.appendChild(this.successMessageElement);
-        
+
         setTimeout(() => {
             this.successMessageElement.remove();
         }, 5000);
@@ -246,7 +247,7 @@ class ContactForm {
             text-align: center;
         `;
         this.form.appendChild(this.successMessageElement);
-        
+
         setTimeout(() => {
             this.successMessageElement.remove();
         }, 5000);
@@ -278,9 +279,9 @@ class MobileMenu {
 
         // Fechar menu ao clicar fora
         document.addEventListener('click', (event) => {
-            const isClickInside = this.navMenu.contains(event.target) || 
-                                this.navToggle.contains(event.target);
-            
+            const isClickInside = this.navMenu.contains(event.target) ||
+                this.navToggle.contains(event.target);
+
             if (!isClickInside && this.navMenu.classList.contains('active')) {
                 this.closeMenu();
             }
