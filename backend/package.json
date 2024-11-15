@@ -1,0 +1,15 @@
+{
+    "name": "tania-dias-backend",
+    "version": "1.0.0",
+    "description": "Backend para formulário de contato",
+    "scripts": {
+      "dev": "netlify dev"
+    },
+    "dependencies": {
+      "dotenv": "^16.3.1",
+      "nodemailer": "^6.9.7"
+    },
+    "devDependencies": {
+      "netlify-cli": "^12.0.11"
+    }
+  }
