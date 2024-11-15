@@ -51,12 +51,14 @@ body {
 }
 
 .logo {
+    margin-top: 25px;
+    margin-bottom: 15px;
     flex: 1;
     text-align: center;
 }
 
 .logo img {
-    height: 60px;
+    height: 80px;
     width: auto;
     object-fit: contain;
     max-width: 200px;
@@ -66,11 +68,12 @@ body {
 /* 5. Navigation Styles */
 .nav {
     display: flex;
-    gap: 3rem;
+    gap: 100rem;
     flex: 2;
     justify-content: center;
     align-items: center;
 }
+
 
 .nav-link {
     text-decoration: none;
@@ -154,6 +157,7 @@ body {
 
 /* 7. Hero Section */
 .hero {
+    margin-top: 35px;
     position: relative;
     height: 550px;
     width: 100%;
@@ -812,13 +816,11 @@ body {
         text-align: left;
     }
 
- .logo {
-    width: 100px;
- }
-
     .logo img {
         height: 50px; 
         max-width: 120px;
+        display: flex;
+        justify-content: space-between;
     }
 
     .hero {
