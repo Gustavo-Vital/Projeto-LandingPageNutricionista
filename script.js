@@ -48,42 +48,42 @@ class WaterCalculator {
     }
 
     setupEventListeners() {
-        const weightInput = document.getElementById('weight-water');
-        const calculateButton = document.getElementById('calculate-water-btn');    
+        this.weightInput = document.getElementById('weight-water');
+        this.calculateButton = document.getElementById('calculate-water-btn');
+        this.resultElement = document.getElementById('water-result');
 
-        if (weightInput) {
-            weightInput.addEventListener('input', () => {
-                const isValid = utils.validateNumber(weightInput.value);
-                utils.showFeedback(weightInput, isValid);
+        if (this.weightInput) {
+            this.weightInput.addEventListener('input', () => {
+                const isValid = utils.validateNumber(this.weightInput.value);
+                utils.showFeedback(this.weightInput, isValid);
             });
 
-            weightInput.addEventListener('keypress', (e) => {
+            this.weightInput.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
                     this.calculate();
                 }
             });
         }
-            if (calculateButton) {
-            calculateButton.addEventListener('click', () => this.calculate());
+
+        if (this.calculateButton) {
+            this.calculateButton.addEventListener('click', () => this.calculate());
         }
     }
 
     calculate() {
-        const weightInput = document.getElementById('weight-water');
-        const resultElement = document.getElementById('water-result');
-        const weight = parseFloat(weightInput.value);
+        const weight = parseFloat(this.weightInput.value);
 
         if (!utils.validateNumber(weight)) {
-            utils.showFeedback(weightInput, false);
+            utils.showFeedback(this.weightInput, false);
             return;
         }
 
-        utils.showFeedback(weightInput, true);
+        utils.showFeedback(this.weightInput, true);
         const waterInLiters = (weight * CONFIG.WATER_FACTOR) / 1000;
-        const currentValue = parseFloat(resultElement.textContent) || 0;
+        const currentValue = parseFloat(this.resultElement.textContent) || 0;
 
         utils.animateValue(
-            resultElement,
+            this.resultElement,
             currentValue,
             waterInLiters,
             CONFIG.ANIMATION_DURATION
@@ -98,8 +98,13 @@ class IMCCalculator {
     }
 
     setupEventListeners() {
-        const inputs = ['weight-imc', 'height'].map(id => document.getElementById(id));
-        const calculateButton = document.getElementById('calculate-imc-btn');
+        this.weightInput = document.getElementById('weight-imc');
+        this.heightInput = document.getElementById('height');
+        this.calculateButton = document.getElementById('calculate-imc-btn');
+        this.resultElement = document.getElementById('imc-result');
+        this.categoryElement = document.getElementById('imc-category');
+
+        const inputs = [this.weightInput, this.heightInput];
 
         inputs.forEach(input => {
             if (input) {
@@ -115,44 +120,48 @@ class IMCCalculator {
                 });
             }
         });
-                if (calculateButton) {
-                calculateButton.addEventListener('click', () => this.calculate());
+
+        if (this.calculateButton) {
+            this.calculateButton.addEventListener('click', () => this.calculate());
+        }
     }
 
     calculate() {
-        const weightInput = document.getElementById('weight-imc');
-        const heightInput = document.getElementById('height');
-        const resultElement = document.getElementById('imc-result');
-        const categoryElement = document.getElementById('imc-category');
-
-        const weight = parseFloat(weightInput.value);
-        const height = parseFloat(heightInput.value);
+        const weight = parseFloat(this.weightInput.value);
+        const height = parseFloat(this.heightInput.value);
 
         if (!utils.validateNumber(weight) || !utils.validateNumber(height)) {
-            utils.showFeedback(weightInput, !utils.validateNumber(weight));
-            utils.showFeedback(heightInput, !utils.validateNumber(height));
+            utils.showFeedback(this.weightInput, !utils.validateNumber(weight));
+            utils.showFeedback(this.heightInput, !utils.validateNumber(height));
             return;
         }
 
-        utils.showFeedback(weightInput, true);
-        utils.showFeedback(heightInput, true);
+        utils.showFeedback(this.weightInput, true);
+        utils.showFeedback(this.heightInput, true);
 
         const heightInMeters = height / 100;
         const imc = weight / (heightInMeters * heightInMeters);
 
-        const currentValue = parseFloat(resultElement.textContent) || 0;
+        const currentValue = parseFloat(this.resultElement.textContent) || 0;
         utils.animateValue(
-            resultElement,
+            this.resultElement,
             currentValue,
             imc,
             CONFIG.ANIMATION_DURATION
         );
 
         const category = CONFIG.IMC_CATEGORIES.find(category => imc <= category.max);
-        categoryElement.textContent = category.label;
-        categoryElement.style.color = category.color;
+        this.categoryElement.textContent = category.label;
+        this.categoryElement.style.color = category.color;
     }
 }
+
+// Inicialização
+document.addEventListener('DOMContentLoaded', () => {
+    const waterCalculator = new WaterCalculator();
+    const imcCalculator = new IMCCalculator();
+});
+
 
 // Classe para o Manipulador do Formulário de Contato
 class ContactForm {
