@@ -2,12 +2,12 @@
 const CONFIG = {
     WATER_FACTOR: 35,
     IMC_CATEGORIES: [
-        { max: 18.5, label: 'Abaixo do peso (Magreza)', color: '#FFA07A' },
-        { max: 24.9, label: 'Peso ideal', color: '#98FB98' },
-        { max: 29.9, label: 'Sobrepeso', color: '#FFD700' },
-        { max: 34.9, label: 'Obesidade grau I', color: '#FFA500' },
-        { max: 39.9, label: 'Obesidade grau II', color: '#FF6347' },
-        { max: Infinity, label: 'Obesidade grau III', color: '#FF4500' }
+        { max: 18.5, label: 'Abaixo do peso (Magreza)' },
+        { max: 24.9, label: 'Peso ideal' },
+        { max: 29.9, label: 'Sobrepeso' },
+        { max: 34.9, label: 'Obesidade grau I'},
+        { max: 39.9, label: 'Obesidade grau II' },
+        { max: Infinity, label: 'Obesidade grau III'}
     ],
     ANIMATION_DURATION: 500
 };
