@@ -26,7 +26,7 @@ const utils = {
             const progress = Math.min(elapsed / duration, 1);
 
             const current = start + (end - start) * progress;
-            element.textContent = current.toFixed(1);
+            element.textContent = current.toFixed(1) + (element.id === 'water-result' ? ' L' : '');
 
             if (progress < 1) {
                 requestAnimationFrame(updateValue);
@@ -44,15 +44,14 @@ const utils = {
 // Calculadora de Água
 class WaterCalculator {
     constructor() {
+        this.weightInput = document.getElementById('weight-water');
+        this.calculateButton = document.getElementById('calculate-water-btn');
+        this.resultElement = document.getElementById('water-result');
         this.setupEventListeners();
     }
 
     setupEventListeners() {
-        this.weightInput = document.getElementById('weight-water');
-        this.calculateButton = document.getElementById('calculate-water-btn');
-        this.resultElement = document.getElementById('water-result');
-
-        if (this.weightInput) {
+        if (this.weightInput && this.calculateButton) {
             this.weightInput.addEventListener('input', () => {
                 const isValid = utils.validateNumber(this.weightInput.value);
                 utils.showFeedback(this.weightInput, isValid);
@@ -63,16 +62,15 @@ class WaterCalculator {
                     this.calculate();
                 }
             });
-        }
 
-        if (this.calculateButton) {
             this.calculateButton.addEventListener('click', () => this.calculate());
         }
     }
 
     calculate() {
-        const weight = parseFloat(this.weightInput.value);
+        if (!this.weightInput || !this.resultElement) return;
 
+        const weight = parseFloat(this.weightInput.value);
         if (!utils.validateNumber(weight)) {
             utils.showFeedback(this.weightInput, false);
             return;
@@ -94,16 +92,15 @@ class WaterCalculator {
 // Calculadora de IMC
 class IMCCalculator {
     constructor() {
-        this.setupEventListeners();
-    }
-
-    setupEventListeners() {
         this.weightInput = document.getElementById('weight-imc');
         this.heightInput = document.getElementById('height');
         this.calculateButton = document.getElementById('calculate-imc-btn');
         this.resultElement = document.getElementById('imc-result');
         this.categoryElement = document.getElementById('imc-category');
+        this.setupEventListeners();
+    }
 
+    setupEventListeners() {
         const inputs = [this.weightInput, this.heightInput];
 
         inputs.forEach(input => {
@@ -127,12 +124,14 @@ class IMCCalculator {
     }
 
     calculate() {
+        if (!this.weightInput || !this.heightInput || !this.resultElement || !this.categoryElement) return;
+
         const weight = parseFloat(this.weightInput.value);
         const height = parseFloat(this.heightInput.value);
 
         if (!utils.validateNumber(weight) || !utils.validateNumber(height)) {
-            utils.showFeedback(this.weightInput, !utils.validateNumber(weight));
-            utils.showFeedback(this.heightInput, !utils.validateNumber(height));
+            utils.showFeedback(this.weightInput, utils.validateNumber(weight));
+            utils.showFeedback(this.heightInput, utils.validateNumber(height));
             return;
         }
 
@@ -156,12 +155,11 @@ class IMCCalculator {
     }
 }
 
-// Inicialização
+// Inicialização quando o DOM estiver pronto
 document.addEventListener('DOMContentLoaded', () => {
-    const waterCalculator = new WaterCalculator();
-    const imcCalculator = new IMCCalculator();
+    new WaterCalculator();
+    new IMCCalculator();
 });
-
 
 // Classe para o Manipulador do Formulário de Contato
 class ContactForm {
