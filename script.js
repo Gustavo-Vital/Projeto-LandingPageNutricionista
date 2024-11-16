@@ -49,6 +49,8 @@ class WaterCalculator {
 
     setupEventListeners() {
         const weightInput = document.getElementById('weight-water');
+        const calculateButton = document.getElementById('calculate-water-btn');    
+
         if (weightInput) {
             weightInput.addEventListener('input', () => {
                 const isValid = utils.validateNumber(weightInput.value);
@@ -60,6 +62,9 @@ class WaterCalculator {
                     this.calculate();
                 }
             });
+        }
+            if (calculateButton) {
+            calculateButton.addEventListener('click', () => this.calculate());
         }
     }
 
@@ -94,6 +99,7 @@ class IMCCalculator {
 
     setupEventListeners() {
         const inputs = ['weight-imc', 'height'].map(id => document.getElementById(id));
+        const calculateButton = document.getElementById('calculate-imc-btn');
 
         inputs.forEach(input => {
             if (input) {
@@ -109,6 +115,8 @@ class IMCCalculator {
                 });
             }
         });
+                if (calculateButton) {
+                calculateButton.addEventListener('click', () => this.calculate());
     }
 
     calculate() {
